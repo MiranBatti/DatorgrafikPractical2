@@ -1,11 +1,9 @@
 package com.example.perjee.grafikapp;
 
 import android.content.Context;
-import android.opengl.GLES10;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -86,7 +84,8 @@ class CGRenderer implements GLSurfaceView.Renderer {
     private float[] mRotationMatrix = new float[16];
     private float[] CTM = new float[16];
 
-    private CubeTriangleStrip mCube;
+    private CubeTriangleStrip mCubeTriangleStrip;
+    private Cube mCube;
 
     public volatile float xAngle;
     public volatile float yAngle;
@@ -97,7 +96,8 @@ class CGRenderer implements GLSurfaceView.Renderer {
         // Set the background frame color
         GLES20.glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
         // initialize a triangle
-        mCube = new CubeTriangleStrip();
+        mCubeTriangleStrip = new CubeTriangleStrip();
+        //mCube = new Cube();
     }
 
     @Override
@@ -122,7 +122,8 @@ class CGRenderer implements GLSurfaceView.Renderer {
         Matrix.translateM(CTM, 0, -0.5f, -0.5f, 0.5f);
 
         // Draw shape
-        mCube.draw (CTM);
+        mCubeTriangleStrip.draw (CTM);
+        //mCube.draw(CTM);
     }
 
     @Override
